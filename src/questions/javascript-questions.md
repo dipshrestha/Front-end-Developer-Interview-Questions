@@ -9,12 +9,23 @@ permalink: /questions/javascript-questions/index.html
   * Can you give an example of one of the ways that working with `this` has changed in ES6?
 * Explain how prototypal inheritance works.
 * What's the difference between a variable that is: `null`, `undefined` or undeclared?
+    * null - is a value of type object and can be assigned to variable explicitly to suggest there is nothing 
+    * undefined - is a type as well as value. when a variable is declared by not assigned a value, it's contain value undefined and it'll be of type 'undefined'
+    * undeclared - when a variable isn't declared, it'll be of type 'undefined'
   * How would you go about checking for any of these states?
+    ** a === null
+    ** a === undefined
+    ** try { a } catch(e) { }// if there is exception it's undeclared
 * What is a closure, and how/why would you use one?
 * What language constructions do you use for iterating over object properties and array items?
+  * forEach 
 * Can you describe the main difference between the `Array.forEach()` loop and `Array.map()` methods and why you would pick one versus the other?
+  * map returns array after some operation on each element, forEach doesn't
 * What's a typical use case for anonymous functions?
+  * event listeners 
 * What's the difference between host objects and native objects?
+  * native objects are recognized by the Javascript interpreters like Object, Math, Date,string methods like indexOf and replace, array methods, 
+  * host objects are supplied by the environment (browser, node) like window, setTimeout
 * Explain the difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
 * Explain the differences on the usage of `foo` between `function foo() {}` and `var foo = function() {}`
 * Can you explain what `Function.call` and `Function.apply` do? What's the notable difference between the two?
