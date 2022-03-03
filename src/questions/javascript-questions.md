@@ -4,6 +4,8 @@ layout: layouts/page.njk
 permalink: /questions/javascript-questions/index.html
 ---
 
+* Can Javascript support multi-threading ?
+  * Yes, with Web Workers. The web workers run on their own thread and communicates with main thread with messsages.
 * Explain event delegation.
   - A technique for listening to events where you delegate a parent element as the listener for all of the events that happen inside it. 
  ```
@@ -73,11 +75,23 @@ document.addEventListener('focus', function (event) {
   * How can you achieve immutability in your own code?
 * Explain the difference between synchronous and asynchronous functions.
 * What are the differences between variables created using `let`, `var` or `const`?
+  * let has lexical scope(or block scope), var has function scope. with const the value once assigned can't change.
 * What are the differences between ES6 class and ES5 function constructors?
 * Can you offer a use case for the new arrow `=>` function syntax? How does this new syntax differ from other functions?
 * What advantage is there for using the arrow syntax for a method in a constructor?
 * What is the definition of a higher-order function?
 * Can you give an example for destructuring an object or an array?
+```
+const user = {
+    id: 42,
+    isVerified: true
+};
+const {id, isVerified} = user;
+
+// array
+const colors = ['red', 'green', 'blue'];
+const [red, green] = colors;
+```
 * Can you give an example of generating a string with ES6 Template Literals?
 * Can you give an example of a curry function and why this syntax offers an advantage?
 * What are the benefits of using `spread syntax` and how is it different from `rest syntax`?
