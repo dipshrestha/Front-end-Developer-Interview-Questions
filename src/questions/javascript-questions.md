@@ -5,6 +5,33 @@ permalink: /questions/javascript-questions/index.html
 ---
 
 * Explain event delegation.
+  - A technique for listening to events where you delegate a parent element as the listener for all of the events that happen inside it. 
+ ```
+ var form = document.querySelector('#hogwarts-application');
+
+// Listen for changes to fields inside the form
+form.addEventListener('input', function (event) {
+
+	// Log the field that was changed
+	console.log(event.target);
+
+}, false);
+ ```
+* Describe event bubbling.
+  * Using a form field as an example, the event would bubble up to the parent form, then any containers or divs the form was in, then the body, then the html element, then the document, then the window.Any listeners on any of those parent elements would get triggered as it bubbles up.
+```
+If you want to prevent bubbling from occurring, you can use the stopPropagation method:
+```
+* Describe event capturing.
+  * Most events bubble. But some, like the focus event, do not. There’s a trick you can use to capture the event, though. The last argument in addEventListener() is called useCapture. We almost always set it to false.
+```
+document.addEventListener('focus', function (event) {
+	console.log(event.target);
+}, true);
+```
+* What is event loop? What is the difference between call stack and task queue?
+  * Event loop is core part of Javascript. It's responsible for executing the code, collecting and processing events, executing queued sub-tasks. It's a loop which takes the tasks/events (can be synchronous or asynchronous functions) out of the task queue and executes those. Then it repeats until there is no task in queue, which is when it goes to sleep. When executing synchronous tasks it utilized the call stack to keep track of function chain. For asynchronous tasks it delegates the callback. Javascript also uses heap to allocate memory to objects (not primitive types).
+
 * Explain how `this` works in JavaScript.
   * Can you give an example of one of the ways that working with `this` has changed in ES6?
 * Explain how prototypal inheritance works.
@@ -32,8 +59,6 @@ permalink: /questions/javascript-questions/index.html
 * Explain `Function.prototype.bind`.
 * What's the difference between feature detection, feature inference, and using the UA string?
 * Explain "hoisting".
-* Describe event bubbling.
-* Describe event capturing.
 * What's the difference between an "attribute" and a "property"?
 * What are the pros and cons of extending built-in JavaScript objects?
 * What is the difference between `==` and `===`?
@@ -47,8 +72,6 @@ permalink: /questions/javascript-questions/index.html
   * What are the pros and cons of immutability?
   * How can you achieve immutability in your own code?
 * Explain the difference between synchronous and asynchronous functions.
-* What is event loop?
-  * What is the difference between call stack and task queue?
 * What are the differences between variables created using `let`, `var` or `const`?
 * What are the differences between ES6 class and ES5 function constructors?
 * Can you offer a use case for the new arrow `=>` function syntax? How does this new syntax differ from other functions?
