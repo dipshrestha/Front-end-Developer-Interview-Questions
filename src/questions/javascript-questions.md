@@ -63,6 +63,17 @@ document.addEventListener('focus', function (event) {
 * Explain "hoisting"
   * only the actual declarations are hoisted, and that assignments are left where they are.
 * What's the difference between an "attribute" and a "property"?
+  * Attributes are additional information which we can put in the HTML to initialize certain DOM properties.
+Properties are formed when the browser parses the HTML and generates the DOM. Each of the elements in the DOM have their own set of properties which are all set by the browser. Some of these properties can have their initial value set by HTML attributes. Whenever a DOM property changes which has influence on the rendered page, the page will be immediately re rendered.
+```
+<html>
+<div id="foo" class="bar foobar">hi</div> <!-- id and class are attributes -->
+<script>
+  console.dir(document.getElementById('foo')// render list of DOM properties and values
+</script>
+</html>
+
+```
 * What are the pros and cons of extending built-in JavaScript objects?
 * What is the difference between `==` and `===`?
 * Explain the same-origin policy with regards to JavaScript.
@@ -100,7 +111,24 @@ const [red, green] = colors;
 * Why you might want to create static class members?
 * What is the difference between `while` and `do-while` loops in JavaScript?
 * What is a promise? Where and how would you use promise?
+  * It's a proxy for the value not necessarily known when the Promise is created. Promise is used to make asynchronous programming easier. It allows us to associated a handler with an asynchronous action's success value or failure reason. A Promise is in one of these states:
+pending: initial state, neither fulfilled nor rejected.
+fulfilled: meaning that the operation was completed successfully.
+rejected: meaning that the operation failed.
+```
+let promise = new Promise((resolve, reject)=> {
+	
+	let ran = Math.floor(Math.random() * 10)
+	setTimeout(f=> {
+		if(ran > 4) resolve('Resolved');
+		else reject('rejected');
+	},1000)
+})
 
+promise.then(value => console.log(value))
+.catch(console.err)
+.finally(()=>console.log('do cleannup'))
+```
 ## Coding questions
 * Make this work:
 ```javascript
