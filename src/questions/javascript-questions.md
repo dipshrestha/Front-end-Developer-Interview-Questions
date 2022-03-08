@@ -60,7 +60,8 @@ document.addEventListener('focus', function (event) {
 * Can you explain what `Function.call` and `Function.apply` do? What's the notable difference between the two?
 * Explain `Function.prototype.bind`.
 * What's the difference between feature detection, feature inference, and using the UA string?
-* Explain "hoisting".
+* Explain "hoisting"
+  * only the actual declarations are hoisted, and that assignments are left where they are.
 * What's the difference between an "attribute" and a "property"?
 * What are the pros and cons of extending built-in JavaScript objects?
 * What is the difference between `==` and `===`?
