@@ -37,6 +37,36 @@ document.addEventListener('focus', function (event) {
 * Explain how `this` works in JavaScript.
   * Can you give an example of one of the ways that working with `this` has changed in ES6?
 * Explain how prototypal inheritance works.
+ * In JavaScript, objects have a special hidden property [[Prototype]] (as named in the specification), that is either null or references another object. That object is called “a prototype”:
+```
+// using .prototype
+function Person(name, age) {
+
+    this.name = name;
+    this.age = age;
+    this.print = function() { console.log(this.name, this.age); }
+}
+
+
+Person.prototype.goodPrint = function() { console.log('name: ', this.name, ' age: ', this.age) };
+
+let p = new Person('Dipesh', 12);
+p.print();
+p.goodPrint();
+
+
+/// using __proto__
+
+let p = {
+    age: '12',
+    name: 'Dipesh',
+    print: function() { console.log(this.name, this.age) }
+}
+
+p.__proto__ = { goodPrint: function() { console.log('name: ', this.name, ' age: ', this.age) } }
+p.print();
+p.goodPrint();
+```
 * What's the difference between a variable that is: `null`, `undefined` or undeclared?
     * null - is a value of type object and can be assigned to variable explicitly to suggest there is nothing 
     * undefined - is a type as well as value. when a variable is declared by not assigned a value, it's contain value undefined and it'll be of type 'undefined'
