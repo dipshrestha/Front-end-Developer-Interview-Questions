@@ -50,7 +50,7 @@ function Person(name, age) {
 
 Person.prototype.goodPrint = function() { console.log('name: ', this.name, ' age: ', this.age) };
 
-let p = new Person('Dipesh', 12);
+let p = new Person('dipshrestha', 12);
 p.print();
 p.goodPrint();
 
@@ -59,7 +59,7 @@ p.goodPrint();
 
 let p = {
     age: '12',
-    name: 'Dipesh',
+    name: 'dipshrestha',
     print: function() { console.log(this.name, this.age) }
 }
 
