@@ -57,8 +57,21 @@ document.addEventListener('focus', function (event) {
   * host objects are supplied by the environment (browser, node) like window, setTimeout
 * Explain the difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
 * Explain the differences on the usage of `foo` between `function foo() {}` and `var foo = function() {}`
-* Can you explain what `Function.call` and `Function.apply` do? What's the notable difference between the two?
-* Explain `Function.prototype.bind`.
+  * the first one is function declaration and the second one is function expression.
+```
+Example: Function Expression
+alert(foo()); // ERROR! foo wasn't loaded yet
+var foo = function() { return 5; }
+Example: Function Declaration
+alert(foo()); // Alerts 5. Declarations are loaded before any code can run.
+function foo() { return 5; }
+
+* Function declarations load before any code is executed while Function expressions load only when the interpreter reaches that line of code.
+* Similar to the var statement, function declarations are hoisted to the top of other code and have larger scope
+Function expressions aren’t hoisted, which allows them to retain a copy of the local variables from the scope where they were defined.
+* Function expression are suitable to pass as callbacks as the less pollute scope.
+* Function expression are beneficial for IIFE.
+```
 * What's the difference between feature detection, feature inference, and using the UA string?
 * Explain "hoisting"
   * only the actual declarations are hoisted, and that assignments are left where they are.
@@ -74,18 +87,14 @@ Properties are formed when the browser parses the HTML and generates the DOM. Ea
 </html>
 
 ```
-* What are the pros and cons of extending built-in JavaScript objects?
-* What is the difference between `==` and `===`?
 * Explain the same-origin policy with regards to JavaScript.
-* Why is it called a Ternary operator, what does the word "Ternary" indicate?
 * What is strict mode? What are some of the advantages/disadvantages of using it?
-* What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?
-* What tools and techniques do you use debugging JavaScript code?
 * Explain the difference between mutable and immutable objects.
   * What is an example of an immutable object in JavaScript?
   * What are the pros and cons of immutability?
   * How can you achieve immutability in your own code?
 * Explain the difference between synchronous and asynchronous functions.
+  * synchronus - sequential, wait until one is done before begining another. asynchronous - don't wait for the result 
 * What are the differences between variables created using `let`, `var` or `const`?
   * let has lexical scope(or block scope), var has function scope. with const the value once assigned can't change.
 * What are the differences between ES6 class and ES5 function constructors?
@@ -104,12 +113,9 @@ const {id, isVerified} = user;
 const colors = ['red', 'green', 'blue'];
 const [red, green] = colors;
 ```
-* Can you give an example of generating a string with ES6 Template Literals?
 * Can you give an example of a curry function and why this syntax offers an advantage?
-* What are the benefits of using `spread syntax` and how is it different from `rest syntax`?
 * How can you share code between files?
-* Why you might want to create static class members?
-* What is the difference between `while` and `do-while` loops in JavaScript?
+  * make modules and do import. or import js file directly.  
 * What is a promise? Where and how would you use promise?
   * It's a proxy for the value not necessarily known when the Promise is created. Promise is used to make asynchronous programming easier. It allows us to associated a handler with an asynchronous action's success value or failure reason. A Promise is in one of these states:
 pending: initial state, neither fulfilled nor rejected.
@@ -129,6 +135,19 @@ promise.then(value => console.log(value))
 .catch(console.err)
 .finally(()=>console.log('do cleannup'))
 ```
+## Easy
+* Can you explain what `Function.call` and `Function.apply` do? What's the notable difference between the two?
+* Explain `Function.prototype.bind`.
+* What is the difference between `==` and `===`?
+* What are the pros and cons of extending built-in JavaScript objects?
+* Why is it called a Ternary operator, what does the word "Ternary" indicate?
+* What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?
+* What tools and techniques do you use debugging JavaScript code?
+* What are the benefits of using `spread syntax` and how is it different from `rest syntax`?
+* Can you give an example of generating a string with ES6 Template Literals?
+* Why you might want to create static class members?
+* What is the difference between `while` and `do-while` loops in JavaScript?
+
 ## Coding questions
 * Make this work:
 ```javascript
