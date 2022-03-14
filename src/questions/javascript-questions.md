@@ -128,9 +128,70 @@ Properties are formed when the browser parses the HTML and generates the DOM. Ea
 * What are the differences between variables created using `let`, `var` or `const`?
   * let has lexical scope(or block scope), var has function scope. with const the value once assigned can't change.
 * What are the differences between ES6 class and ES5 function constructors?
+```
+// ES6
+class User {
+    constructor(name, age, gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+    print() {
+        console.log(`${this.name} has an age of 
+            ${this.age} and gender of ${this.gender}`);
+    }
+}
+const Roy = new User('Roy', '19', 'Male');
+Roy.print();
+
+// ES5
+function User1(name, age, gender) {
+    this.age = age;
+    this.name = name;
+    this.gender = gender;
+    this.print = function() {
+        console.log(
+            `${this.name} has an age of ${this.age} 
+                and gender of ${this.gender}`
+        );
+    };
+}
+const Roy1 = new User1('Roy1', '19', 'Male');
+Roy1.print();
+```
 * Can you offer a use case for the new arrow `=>` function syntax? How does this new syntax differ from other functions?
 * What advantage is there for using the arrow syntax for a method in a constructor?
 * What is the definition of a higher-order function?
+  * Higher-order functions in JavaScript are a special category of functions that either accept functions as an argument or return functions. On the other side, if the function uses only primitives or objects as arguments or return values, these functions are first-order. Higher-order functions provide the reusability benefit: the main behavior is provided by the higher-order function itself, and by accepting a function as an argument you extend that behavior at your will.
+```
+function calculate(numbers) {
+  let sum = 0;
+  for (const number of numbers) {
+    sum = sum + number;
+  }
+  return sum;
+}
+calculate([1, 2, 4]); // => 7
+/////////////////////////////
+
+// Below extends the calculate functionality by converting into higher-order function
+function calculate(operation, initialValue, numbers) {
+  let total = initialValue;
+  for (const number of numbers) {
+    total = operation(total, number);
+  }
+  return total;
+}
+function sum(n1, n2) {
+  return n1 + n2;
+}
+function multiply(n1, n2) {
+  return n1 * n2;
+}
+calculate(sum, 0, [1, 2, 4]);      // => 7
+calculate(multiply, 1, [1, 2, 4]); // => 8
+
+```
 * Can you give an example for destructuring an object or an array?
 ```
 const user = {
