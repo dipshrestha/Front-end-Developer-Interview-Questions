@@ -103,6 +103,26 @@ Function expressions aren’t hoisted, which allows them to retain a copy of the
 * Function expression are beneficial for IIFE.
 ```
 * What's the difference between feature detection, feature inference, and using the UA string?
+```
+Feature detection checks a feature for existence, e.g.:
+
+if (window.XMLHttpRequest) {
+    new XMLHttpRequest();
+}
+
+Feature inference checks for a feature just like feature detection, 
+but uses another function because it assumes it will also exist, e.g.:
+
+if (document.getElementsByTagName) {
+    element = document.getElementById(id);
+}
+Checking the UA string is an old practice and should not be used anymore. 
+You keep changing the UA checks and never benefit from newly implemented features, e.g.:
+
+if (navigator.userAgent.indexOf("MSIE 7") > -1){
+    //do something
+}
+```
 * Explain "hoisting"
   * only the actual declarations are hoisted, and that assignments are left where they are.
 * What's the difference between an "attribute" and a "property"?
@@ -118,11 +138,23 @@ Properties are formed when the browser parses the HTML and generates the DOM. Ea
 
 ```
 * Explain the same-origin policy with regards to JavaScript.
+  * The same-origin policy is a browser security feature that restricts how documents and scripts on one origin can interact with resources on another origin. It helps isolate potentially malicious documents, reducing possible attack vectors. For example, it prevents a malicious website on the Internet from running JS in a browser to read data from a third-party webmail service (which the user is signed into) or a company intranet (which is protected from direct access by the attacker by not having a public IP address) and relaying that data to the attacker.The same-origin policy controls interactions between two different origins, such as when you use XMLHttpRequest or an <img> element.  
+  * Cross-Origin Resource Sharing (CORS) is a security mechanism that allows servers to specify trusted origins that can be used in cross-origin requests. A CORS request can be either Simple or Preflight.
 * What is strict mode? What are some of the advantages/disadvantages of using it?
-* Explain the difference between mutable and immutable objects.
-  * What is an example of an immutable object in JavaScript?
-  * What are the pros and cons of immutability?
+* Explain the difference between mutable and immutable objects. - value of mutable object can be changed while immutable object can't be.
+  * What is an example of an immutable object in JavaScript? - string, number, boolean
+  * What are the pros and cons of immutability? pros - predictability, thread safety; cons - they require a separate object for each distinct value
   * How can you achieve immutability in your own code?
+```
+const supportedLanguages = {
+  'af': 'Afrikaans',
+  'bn': 'Bengali',
+  'de': 'German',
+  'en': 'English',
+  'fr': 'French'
+}
+const frozenSupportedLanguages = Object.freeze(supportedLanguages); // only in strict mode
+```
 * Explain the difference between synchronous and asynchronous functions.
   * synchronus - sequential, wait until one is done before begining another. asynchronous - don't wait for the result 
 * What are the differences between variables created using `let`, `var` or `const`?
